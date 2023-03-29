@@ -218,5 +218,3 @@ for (i in 1 : length(aggs)){
   plot(agg$x, xaxt = "n")
   axis(1, at = seq(1, 40, 3), labels = agg$Group.1[seq(1, 40, 3)])
 }
-
-write.csv(combined3, 'hahah3.csv', row.names = F)
