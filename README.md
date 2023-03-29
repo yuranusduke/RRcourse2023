@@ -1,7 +1,8 @@
 # RRcourse2023
 Main repository for Reproducible Research 2023 course.
 
-# Not sure how to use the repository and submit the assignments? The key steps are:
+## Not sure how to use the repository and submit the assignments? 
+The key steps are:
 1) Have a fork of the course repository.
 2) Clone it (the fork) to your computer.
 3) Set a remote path to the original course repository. Use it to pull the new materials.
