@@ -1,0 +1,21 @@
+yukunhong1108@instance-1:~$ mkdir rr
+yukunhong1108@instance-1:~$ cd rr
+yukunhong1108@instance-1:~/rr$ touch test.txt
+yukunhong1108@instance-1:~/rr$ touch new.txt
+yukunhong1108@instance-1:~/rr$ vim new.txt 
+yukunhong1108@instance-1:~/rr$ cp /etc/modules .
+yukunhong1108@instance-1:~/rr$ ls
+modules  new.txt  test.txt
+yukunhong1108@instance-1:~/rr$ ls modules 
+modules
+yukunhong1108@instance-1:~/rr$ ls -ltr
+total 8
+-rw-rw-r-- 1 yukunhong1108 yukunhong1108   0 Apr 12 08:21 test.txt
+-rw-rw-r-- 1 yukunhong1108 yukunhong1108  18 Apr 12 08:22 new.txt
+-rw-r--r-- 1 yukunhong1108 yukunhong1108 195 Apr 12 08:23 modules
+yukunhong1108@instance-1:~/rr$ cd ..
+yukunhong1108@instance-1:~$ rmdir rr
+rmdir: failed to remove 'rr': Directory not empty
+yukunhong1108@instance-1:~$ rm -r rr
+yukunhong1108@instance-1:~$ ls
+test.txt

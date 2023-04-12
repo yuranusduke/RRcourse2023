@@ -18,4 +18,5 @@ In R, we should avoid problem in computing variance in
 Date: 2023/04/12
 
 - [x] Ex1
+- [x] Ex2
 
