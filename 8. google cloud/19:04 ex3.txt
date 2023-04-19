@@ -1,0 +1,50 @@
+yukunhong1108@instance-1:/$ ps aux | grep cpu
+root          10  0.0  0.0      0     0 ?        I<   07:50   0:00 [mm_percpu_wq]
+root          18  0.0  0.0      0     0 ?        S    07:50   0:00 [cpuhp/0]
+root          19  0.0  0.0      0     0 ?        S    07:50   0:00 [cpuhp/1]
+root         308  0.0  0.0      0     0 ?        I    07:50   0:01 [kworker/0:4-mm_percpu_wq]
+root        1534  0.0  0.0      0     0 ?        I    08:32   0:00 [kworker/1:1-mm_percpu_wq]
+yukunho+    1664  0.0  0.2   7004  2092 pts/0    R+   08:38   0:00 grep --color=auto cpu
+yukunhong1108@instance-1:/$ ip a | tail -n 3
+       valid_lft 2465sec preferred_lft 2465sec
+    inet6 fe80::4001:aff:fe80:2/64 scope link 
+       valid_lft forever preferred_lft forever
+yukunhong1108@instance-1:/$ cd /etc
+yukunhong1108@instance-1:/etc$ ls
+NetworkManager                 crontab               hdparm.conf      logcheck             nftables.conf           rc6.d              sysctl.d
+PackageKit                     cryptsetup-initramfs  host.conf        login.defs           nsswitch.conf           rcS.d              systemd
+X11                            crypttab              hostname         logrotate.conf       nvme                    resolv.conf        terminfo
+adduser.conf                   dbus-1                hosts            logrotate.d          opt                     rmt                timezone
+alternatives                   debconf.conf          hosts.allow      lsb-release          os-release              rpc                tmpfiles.d
+apparmor                       debian_version        hosts.deny       lvm                  overlayroot.conf        rsyslog.conf       ubuntu-advantage
+apparmor.d                     default               init.d           machine-id           overlayroot.local.conf  rsyslog.d          ucf.conf
+apport                         deluser.conf          initramfs-tools  magic                pam.conf                screenrc           udev
+apt                            depmod.d              inputrc          magic.mime           pam.d                   security           ufw
+bash.bashrc                    dhcp                  iproute2         manpath.config       passwd                  selinux            update-manager
+bash_completion                dpkg                  iscsi            mdadm                passwd-                 services           update-motd.d
+bash_completion.d              e2scrub.conf          issue            mime.types           perl                    shadow             update-notifier
+bindresvport.blacklist         ec2_version           issue.net        mke2fs.conf          pm                      shadow-            usb_modeswitch.conf
+binfmt.d                       environment           kernel           modprobe.d           polkit-1                shells             usb_modeswitch.d
+boto.cfg                       ethertypes            kernel-img.conf  modules              pollinate               skel               vim
+byobu                          fstab                 landscape        modules-load.d       ppp                     sos                vmware-tools
+ca-certificates                fuse.conf             ld.so.cache      mtab                 profile                 ssh                vtrgb
+ca-certificates.conf           gai.conf              ld.so.conf       multipath            profile.d               ssl                wgetrc
+ca-certificates.conf.dpkg-old  google_instance_id    ld.so.conf.d     multipath.conf       protocols               subgid             xattr.conf
+chrony                         groff                 ldap             nanorc               python3                 subgid-            xdg
+cloud                          group                 legal            needrestart          python3.10              subuid             zsh_command_not_found
+console-setup                  group-                libaudit.conf    netconfig            rc0.d                   subuid-
+cron.d                         grub.d                libblockdev      netplan              rc1.d                   sudo.conf
+cron.daily                     gshadow               libnl-3          network              rc2.d                   sudo_logsrvd.conf
+cron.hourly                    gshadow-              locale.alias     networkd-dispatcher  rc3.d                   sudoers
+cron.monthly                   gss                   locale.gen       networks             rc4.d                   sudoers.d
+cron.weekly                    haha.py               localtime        newt                 rc5.d                   sysctl.conf
+yukunhong1108@instance-1:/etc$ cd selinux/
+yukunhong1108@instance-1:/etc/selinux$ ls -l
+total 4
+-rw-r--r-- 1 root root 2041 Mar 17  2022 semanage.conf
+yukunhong1108@instance-1:/etc/selinux$ basename $(pwd)
+selinux
+yukunhong1108@instance-1:/etc/selinux$ cat semanage.conf | head -n 3
+# Authors: Jason Tang <jtang@tresys.com>
+#
+# Copyright (C) 2004-2005 Tresys Technology, LLC
