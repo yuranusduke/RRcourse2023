@@ -32,6 +32,10 @@ Date: 2023/04/19
 In `9. test` folder, you can find one `py` file and a text file regarding exercise.
 
 - [x] Ex3
+- [x] testing.py
+
+
+
 
 
 
