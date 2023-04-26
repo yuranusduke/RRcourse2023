@@ -23,3 +23,16 @@ This article is based from [wikipedia](https://en.wikipedia.org/wiki/Breaking_Ba
 <p style="text-align:center">
   <img src = 'breaking.png' height=200 width = 300 title = "breaking bad title"/>
 </p>
+
+
+# Basic Ratings
+
+*Breaking Bad* received widespread critical acclaim and has been praised by many critics as one of the greatest television shows of all time. On the review aggregator website Metacritic (using a scale of 0–100), the first season scored 73, the second 84, the third 89, the fourth 96, and the fifth 99. The American Film Institute listed *Breaking Bad* as one of the top ten television series of 2008, 2010, 2011, 2012 and 2013. In 2013, TV Guide ranked it as the ninth greatest TV series of all time. By its end, the series was among the most-watched cable shows on American television, with audience numbers doubling from the fourth season to the fifth.
+
+| Season       | Rotten Tomatoes  | Metacritic |
+|:------:    |:-----:|:-------:|
+| 1 | 86% (8.3/10 average rating)  | 73      |
+| 2  | 97% (9.1/10 average rating) | 84      |
+| 3  | 100% (9.2/10 average rating) | 89      |
+| 4 | 100% (9.6/10 average rating)  | 96      |
+| 5 | 97% (9.5/10 average rating)  | 99      |
