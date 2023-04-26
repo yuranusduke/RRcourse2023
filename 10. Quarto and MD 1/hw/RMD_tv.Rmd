@@ -36,3 +36,12 @@ This article is based from [wikipedia](https://en.wikipedia.org/wiki/Breaking_Ba
 | 3  | 100% (9.2/10 average rating) | 89      |
 | 4 | 100% (9.6/10 average rating)  | 96      |
 | 5 | 97% (9.5/10 average rating)  | 99      |
+
+
+# Viewership
+
+*Breaking Bad* premiered on the same night as both the NFC and AFC Championships in the 2008 NFL playoffs, an intentional decision by AMC hoping to capture the adult male viewership immediately following the planned end of the NFC game. The game ran over its time slot, cutting into *Breaking Bad*'s timeslot in most of America. As a result, the pilot had only about 1.4 million viewers. Coupled with the ongoing writers strike, the first season did not draw as large of a viewership as they expected. However, with subsequent seasons, viewership increased, avoiding the usual trend of downward viewership that most serialized shows had. Ratings further increased by the fourth season as, prior to airing, the previous seasons had been added to Netflix, boosting interest in the show. *Breaking Bad* is considered the first such show to have a renewed burst of interest due to the show being made available on Netflix. The second half of the final season saw record viewership, with the series finale reaching over 10.3 million viewers.
+
+<p style="text-align:center">
+  <img src = 'viewer1.png' height=200 width = 600 title = "Viewership over time"/>
+</p>
