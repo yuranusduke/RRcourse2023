@@ -34,6 +34,16 @@ In `9. test` folder, you can find one `py` file and a text file regarding exerci
 - [x] Ex3
 - [x] testing.py
 
+### 4. Markdown 1
+
+Date: 2023/04/26
+
+In `10. Quarto and MD 1` folder, you can find a subfolder `hw` containing markdown exercise, including pictures, `Rmd` file and rendered `html` file. I commit after each step.
+
+- [x] Markdown 1 exercise
+
+### 5. to be continued...
+
 
 
 
