@@ -1,15 +1,21 @@
 ---
 title: "Viewership Report on *Breaking Bad*"
-author: "Kunhong Yu"
+author: "Kunhong Yu (444447)"
 date: "04/26/2023"
-output: html_document
+output: 
+  html_document:
+    fig_caption: TRUE
+urlcolor: blue
+header-includes:
+   - \usepackage{subfig}
+link-citations: yes
 ---
 
-```{r setup, include=FALSE}
+```{r label = "setup", include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(reticulate)
 library(chron)
-#py_install("pandas")
+library(dplyr)
 ```
 
 ---
@@ -17,13 +23,11 @@ library(chron)
 This article is based from [wikipedia](https://en.wikipedia.org/wiki/Breaking_Bad).
 
 # Short Description
-*Breaking Bad* is an American crime drama television series created and produced by Vince Gilligan. Set and filmed in Albuquerque, New Mexico, the series follows Walter White (Bryan Cranston), an underpaid, overqualified, and dispirited high-school chemistry teacher who is struggling with a recent diagnosis of stage-three lung cancer. White turns to a life of crime and partners with a former student, Jesse Pinkman (Aaron Paul), to produce and distribute methamphetamine to secure his family's financial future before he dies, while navigating the dangers of the criminal underworld. The show aired on AMC from January 20, 2008, to September 29, 2013, consisting of five seasons for a total of 62 episodes.
+*Breaking Bad* is an American crime drama television series created and produced by Vince Gilligan. Set and filmed in Albuquerque, New Mexico, the series follows Walter White (Bryan Cranston), an underpaid, overqualified, and dispirited high-school chemistry teacher who is struggling with a recent diagnosis of stage-three lung cancer. White turns to a life of crime and partners with a former student, Jesse Pinkman (Aaron Paul), to produce and distribute methamphetamine to secure his family's financial future before he dies, while navigating the dangers of the criminal underworld. The show aired on AMC from January 20, 2008, to September 29, 2013, consisting of five seasons for a total of 62 episodes, result is shown in below figure.
 
-
-<p style="text-align:center">
-  <img src = 'breaking.png' height=200 width = 300 title = "breaking bad title"/>
-</p>
-
+```{r fig1, echo = FALSE, out.width = "40%", out.height = "15%", fig.cap = "breaking bad title", fig.show = "hold", fig.align = "center"}
+knitr::include_graphics('breaking.png')
+``` 
 
 # Basic Ratings
 
@@ -37,16 +41,30 @@ This article is based from [wikipedia](https://en.wikipedia.org/wiki/Breaking_Ba
 | 4 | 100% (9.6/10 average rating)  | 96      |
 | 5 | 97% (9.5/10 average rating)  | 99      |
 
-
 # Viewership
 
-*Breaking Bad* premiered on the same night as both the NFC and AFC Championships in the 2008 NFL playoffs, an intentional decision by AMC hoping to capture the adult male viewership immediately following the planned end of the NFC game. The game ran over its time slot, cutting into *Breaking Bad*'s timeslot in most of America. As a result, the pilot had only about 1.4 million viewers. Coupled with the ongoing writers strike, the first season did not draw as large of a viewership as they expected. However, with subsequent seasons, viewership increased, avoiding the usual trend of downward viewership that most serialized shows had. Ratings further increased by the fourth season as, prior to airing, the previous seasons had been added to Netflix, boosting interest in the show. *Breaking Bad* is considered the first such show to have a renewed burst of interest due to the show being made available on Netflix. The second half of the final season saw record viewership, with the series finale reaching over 10.3 million viewers.
+*Breaking Bad* premiered on the same night as both the NFC and AFC Championships in the 2008 NFL playoffs, an intentional decision by AMC hoping to capture the adult male viewership immediately following the planned end of the NFC game. The game ran over its time slot, cutting into *Breaking Bad*'s timeslot in most of America. As a result, the pilot had only about 1.4 million viewers. Coupled with the ongoing writers strike, the first season did not draw as large of a viewership as they expected. However, with subsequent seasons, viewership increased, avoiding the usual trend of downward viewership that most serialized shows had. Ratings further increased by the fourth season as, prior to airing, the previous seasons had been added to Netflix, boosting interest in the show. *Breaking Bad* is considered the first such show to have a renewed burst of interest due to the show being made available on Netflix. The second half of the final season saw record viewership, with the series finale reaching over 10.3 million viewers, results are shown in below figure.
 
-<p style="text-align:center">
-  <img src = 'viewer1.png' height=200 width = 600 title = "Viewership over time"/>
-</p>
+```{r fig3, echo = FALSE, out.width = "49%", out.height = "18%",fig.cap = "Viewership", fig.subcap = c("Viewership over time", "Viewership over time epsiode by epsiode"), layout.ncol = 2, fig.show = "hold",fig.align = "center"}
+knitr::include_graphics('viewer1.png')
+knitr::include_graphics('viewer2.png')
+``` 
 
+# Short Description of Changes in Viewership
 
-<p style="text-align:center">
-  <img src = 'viewer2.png' height=300 width = 700 title = "Viewership over episode"/>
-</p>
+In this part, we display viewership changes from above table with only season and average viewers (millions) and changes season by season are in below figures.
+
+```{r tab1, echo = FALSE}
+df3 <- data.frame(
+  Seasons = c('1', '2', '3', '4', '5'),
+  AvgViewers = c(1.23, 1.30, 1.52, 1.87, 4.32)
+)
+knitr::kable(df3, caption = "Viewership in only seasons and average viewers")
+```
+
+```{r tab2, echo = FALSE}
+df4 <- lag(df3)
+df3$AvgViewers <- df3$AvgViewers - df4$AvgViewers
+names(df3) <- c('Seasons', 'ChangesAvgViewers')
+knitr::kable(df3, caption = "Viewership changes season by season")
+```
