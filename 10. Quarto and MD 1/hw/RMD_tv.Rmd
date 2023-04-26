@@ -45,3 +45,8 @@ This article is based from [wikipedia](https://en.wikipedia.org/wiki/Breaking_Ba
 <p style="text-align:center">
   <img src = 'viewer1.png' height=200 width = 600 title = "Viewership over time"/>
 </p>
+
+
+<p style="text-align:center">
+  <img src = 'viewer2.png' height=300 width = 700 title = "Viewership over episode"/>
+</p>
