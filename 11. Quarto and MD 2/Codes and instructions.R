@@ -14,7 +14,7 @@ knitr::convert_chunk_header(input = "RMD_class_1_cut.Rmd",
                             output = "QMD_class_1_cut.qmd")
 
 ## Step 2)
-readLines("QMD_class_1_cut.qmd")[1:5]
+readLines("QMD_class_1_cut.qmd")
 
 readLines("QMD_class_1_cut.qmd") %>%
   stringr::str_replace(

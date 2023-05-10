@@ -11,6 +11,7 @@ execute:
 #| label = "setup",
 #| include = FALSE
 library(chron)
+library(ggplot2)
 library(reticulate)
 ```
 
@@ -227,18 +228,18 @@ plot(pressure)
 You can also [use Python in Quarto with Jupyter Notebook](https://quarto.org/docs/computations/python.html) or even use it interchangeably with other languages:
 
 ```{python}
-import pandas
-flights = pandas.read_csv("../Data/flights.csv")
-flights = flights[flights['dest'] == "ORD"]
-flights = flights[['carrier', 'dep_delay', 'arr_delay']]
-flights = flights.dropna()
+# import pandas
+# flights = pandas.read_csv("../Data/flights.csv")
+# flights = flights[flights['dest'] == "ORD"]
+# flights = flights[['carrier', 'dep_delay', 'arr_delay']]
+# flights = flights.dropna()
 ```
 
 ```{r}
-library(ggplot2)
-ggplot(py$flights, aes(carrier, arr_delay)) + geom_point() + geom_jitter()
-
-cat("Example from: https://rstudio.github.io/reticulate/articles/r_markdown.html")
+# library(ggplot2)
+# ggplot(py$flights, aes(carrier, arr_delay)) + geom_point() + geom_jitter()
+# 
+# cat("Example from: https://rstudio.github.io/reticulate/articles/r_markdown.html")
 ```
 
 And a nice table alternative -\> `kable` from the `knitr` package.
