@@ -50,7 +50,7 @@ In `11. Quarto and MD 2` folder, you can find a subfolder `hw` containing markdo
 
 - [x] Markdown 2 exercise
 
-### 6. Markdown 2
+### 6. Markdown 3
 
 Date: 2023/05/17
 
