@@ -50,7 +50,16 @@ In `11. Quarto and MD 2` folder, you can find a subfolder `hw` containing markdo
 
 - [x] Markdown 2 exercise
 
-### 6. to be continued...
+### 6. Markdown 2
+
+Date: 2023/05/17
+
+In `12. Quarto and MD 3` folder, you can find a subfolder `hw` containing markdown exercise, including pictures, `qmd` file and rendered 8 `pdf` files and a `R` file to loop through 8 data sets. 
+
+- [x] Markdown 3 exercise
+
+
+### 7. to be continued...
 
 
 
