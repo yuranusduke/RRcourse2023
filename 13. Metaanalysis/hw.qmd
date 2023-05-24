@@ -1,0 +1,153 @@
+---
+title: "Homework For Meta Analysis in R"
+author: "Kunhong Yu (444447)"
+date: today
+format:  
+  html:
+    theme: lumen
+    toc: true
+    toc_float: true
+title-block-banner: true
+execute:
+  echo: fenced
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+#| label = "setup",
+#| include = FALSE
+library(meta)
+library(metafor)
+library(dplyr)
+#setwd("")
+```
+
+
+# Assignment
+
+1) Import the data from the `data\metaanalysis_data.xlsx` file. The data come from the meta-analysis study: [Todd et al., 2017 - Sex differences in children's toy preferences: A systematic review, meta‐regression, and meta‐analysis](https://onlinelibrary.wiley.com/doi/full/10.1002/icd.2064)
+
+The study looks at various studies of children choosing what kind of toys they play with (stereotypically 'boy-toys' or stereotypically 'girl-toys'). Mean times (in seconds) of playing are recorded, along with sample sizes and standard errors (for boys playing with each kind of toys and for girls playing with each kind of toys).
+
+There's also information about the studies (e.g. year) and a bit about quality.
+
+Here's authors' descriptions to the data:
+
+> Neutral toys (1 = neutral toys included; 2 = neutral toys not included); Parent present (1 = absent; 2 = minimal interaction; 3 = moderate or full interaction); Setting = location of study (1 = home; 2 = laboratory; 3 = nursery); Country = gender inequality index, a measure of how gender egalitarian the country was at the time the study took place.
+
+> Note. Quality is assessed using Newcastle–Ottawa Quality Assessment Scale criteria adapted for this study. A star indicates that the study fulfilled this criterion; an X indicates that the
+study did not fulfil this criterion. 
+Case definition adequate: clear justification for the gendered nature of a toy, for example, based on research. 
+Representativeness of cases: recruitment of consecutive participants. 
+Selection of controls: whether boys and girls were comparable in terms of social background.
+Parental opinion: whether parents' views on gender were measured.
+Comparability of both groups: the toys were comparable (in size, shape, etc.) and if the boys and girls were comparable in age. 
+Ascertainment of behaviour: Play behaviour was clearly defined. 
+Same ascertainment method for both groups: The measurement of the outcome (time spent playing with toy) was clearly defined. 
+Nonresponse rate: whether either nonuptake or dropout rates reported.
+
+2) Experiment using what you've learned:
+
+a) combine the effects
+b) create a funnel plot (what do you see?)
+c) check if methods / quality affect the results
+d) does author gender affect it?
+
+## Solutions
+
+```{r}
+data <- readxl::read_excel("data/metaanalysis_data.xlsx")
+head(data)
+```
+In this study, we plan to use two different sets of variables, first is `Mean_boys_play_male` and `Mean_girls_play_female` where later one is control group, second is `Mean_boys_play_female` and `Mean_girls_play_male` where later one is control group.
+
+### 1. First Setting
+To combine the effects, we have to get each effect size, however, effect sizes are not calculated but we have the necessary data.
+
+```{r}
+m.raw <- metacont(n.e = N_boys,
+                  mean.e = Mean_boys_play_male,
+                  sd.e = SD_boys_play_male,
+                  n.c = N_girls,
+                  mean.c = Mean_girls_play_female,
+                  sd.c = SD_girls_play_female,
+                  data = data,
+                  studlab = paste(Study),
+                  fixed = TRUE,
+                  random = TRUE,
+)
+m.raw
+```
+
+With `meta` package this is very simple. We just put our results into the `forest()` function:
+
+```{r}
+m.raw %>% forest(sortvar=TE)
+```
+
+Most of them are in the centered around true effect, and their standard errors are quite small, some of them are in the right side of true effect and some are in the left. As for checking if methods/quality affect results, we use `metareg` to do that for us, where we model 
+
+```{r}
+m.raw %>% metareg(`Parental opinion` + `Representativeness of cases`)
+```
+Here, we use `Parental opinion` and `Representativeness of cases`, finding that former one has effect on the results with 0.05 as significance level. Regarding authors' genders, 
+```{r}
+m.raw %>% metareg(`Female authors` + `Male authors`)
+```
+We here find that authors' genders do not affect results.
+Next, we use funnel plot to check for publication bias.  Let's make it a 'contour-enhanced' funnel plot:
+
+```{r}
+contour_levels <- c(0.90, 0.95, 0.99)
+contour_colors <- c("darkblue", "blue", "lightblue")
+funnel(m.raw, contour = contour_levels, col.contour = contour_colors)
+legend("topright", c("p < 0.10", "p < 0.05", "p < 0.01"), bty = "n", fill = contour_colors)
+```
+From funnel plot, we see that most of them are around medium standard errors and scatter around zero difference, which is true effect, and this plot is more or less symmetric, which demonstrates that publication bias is not present regarding this setting.
+
+
+### 2. Second Setting
+To combine the effects, we have to get each effect size, however, effect sizes are not calculated but we have the necessary data.
+
+```{r}
+m.raw2 <- metacont(n.e = N_boys,
+                  mean.e = Mean_boys_play_female,
+                  sd.e = SD_boys_play_female,
+                  n.c = N_girls,
+                  mean.c = Mean_girls_play_male,
+                  sd.c = SD_girls_play_male,
+                  data = data,
+                  studlab = paste(Study),
+                  fixed = TRUE,
+                  random = TRUE,
+)
+m.raw2
+```
+
+With `meta` package this is very simple. We just put our results into the `forest()` function:
+
+```{r}
+m.raw2 %>% forest(sortvar=TE)
+```
+
+Most of them are in the centered around true effect, and their standard errors are quite small, some of them are in the right side of true effect and some are in the left, so we have the same conclusion as before. As for checking if methods/quality affect results, we use `metareg` to do that for us, where we model 
+
+```{r}
+m.raw2 %>% metareg(`Parental opinion` + `Representativeness of cases`)
+```
+Here, we use `Parental opinion` and `Representativeness of cases`, unlike first setting, we here find `Parental opinion` is not significant.
+Regarding authors' genders, 
+```{r}
+m.raw2 %>% metareg(`Female authors` + `Male authors`)
+```
+We here find that authors' genders do not affect results similar to previous setting.
+Next, we use funnel plot to check for publication bias.  Let's make it a 'contour-enhanced' funnel plot:
+
+```{r}
+contour_levels <- c(0.90, 0.95, 0.99)
+contour_colors <- c("darkblue", "blue", "lightblue")
+funnel(m.raw2, contour = contour_levels, col.contour = contour_colors)
+legend("topright", c("p < 0.10", "p < 0.05", "p < 0.01"), bty = "n", fill = contour_colors)
+```
+From funnel plot, we see that most of them are around medium standard errors and scatter around zero difference, which is true effect, and this plot is more or less symmetric, which demonstrates that publication bias is not present regarding this setting, which is similar as first setting.

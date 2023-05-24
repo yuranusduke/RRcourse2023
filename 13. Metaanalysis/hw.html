@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kunhong Yu (444447)">
+<meta name="dcterms.date" content="2023-05-24">
+
+<title>Homework For Meta Analysis in R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="hw_files/libs/clipboard/clipboard.min.js"></script>
+<script src="hw_files/libs/quarto-html/quarto.js"></script>
+<script src="hw_files/libs/quarto-html/popper.min.js"></script>
+<script src="hw_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="hw_files/libs/quarto-html/anchor.min.js"></script>
+<link href="hw_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="hw_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="hw_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="hw_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="hw_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Homework For Meta Analysis in R</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Kunhong Yu (444447) </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 24, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#assignment" id="toc-assignment" class="nav-link active" data-scroll-target="#assignment">Assignment</a>
+  <ul class="collapse">
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions">Solutions</a>
+  <ul class="collapse">
+  <li><a href="#first-setting" id="toc-first-setting" class="nav-link" data-scroll-target="#first-setting">1. First Setting</a></li>
+  <li><a href="#second-setting" id="toc-second-setting" class="nav-link" data-scroll-target="#second-setting">2. Second Setting</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="assignment" class="level1">
+<h1>Assignment</h1>
+<ol type="1">
+<li>Import the data from the <code>data\metaanalysis_data.xlsx</code> file. The data come from the meta-analysis study: <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/icd.2064">Todd et al., 2017 - Sex differences in children’s toy preferences: A systematic review, meta‐regression, and meta‐analysis</a></li>
+</ol>
+<p>The study looks at various studies of children choosing what kind of toys they play with (stereotypically ‘boy-toys’ or stereotypically ‘girl-toys’). Mean times (in seconds) of playing are recorded, along with sample sizes and standard errors (for boys playing with each kind of toys and for girls playing with each kind of toys).</p>
+<p>There’s also information about the studies (e.g.&nbsp;year) and a bit about quality.</p>
+<p>Here’s authors’ descriptions to the data:</p>
+<blockquote class="blockquote">
+<p>Neutral toys (1 = neutral toys included; 2 = neutral toys not included); Parent present (1 = absent; 2 = minimal interaction; 3 = moderate or full interaction); Setting = location of study (1 = home; 2 = laboratory; 3 = nursery); Country = gender inequality index, a measure of how gender egalitarian the country was at the time the study took place.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Note. Quality is assessed using Newcastle–Ottawa Quality Assessment Scale criteria adapted for this study. A star indicates that the study fulfilled this criterion; an X indicates that the study did not fulfil this criterion. Case definition adequate: clear justification for the gendered nature of a toy, for example, based on research. Representativeness of cases: recruitment of consecutive participants. Selection of controls: whether boys and girls were comparable in terms of social background. Parental opinion: whether parents’ views on gender were measured. Comparability of both groups: the toys were comparable (in size, shape, etc.) and if the boys and girls were comparable in age. Ascertainment of behaviour: Play behaviour was clearly defined. Same ascertainment method for both groups: The measurement of the outcome (time spent playing with toy) was clearly defined. Nonresponse rate: whether either nonuptake or dropout rates reported.</p>
+</blockquote>
+<ol start="2" type="1">
+<li>Experiment using what you’ve learned:</li>
+</ol>
+<ol type="a">
+<li>combine the effects</li>
+<li>create a funnel plot (what do you see?)</li>
+<li>check if methods / quality affect the results</li>
+<li>does author gender affect it?</li>
+</ol>
+<section id="solutions" class="level2">
+<h2 class="anchored" data-anchor-id="solutions">Solutions</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"data/metaanalysis_data.xlsx"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 28
+  Study   Femal…¹ Male …² Age (…³ N_boys N_girls Mean_…⁴ SD_bo…⁵ Mean_…⁶ SD_gi…⁷
+  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 Alexan…       2       0    19.5     47      47    439.   166.    249.     161.
+2 Arthur…       1       0    19       22      18    148    105      54       53 
+3 Berenb…       2       0    65.8     18      18    325.   270.    135.     202.
+4 Berenb…       2       0    93.1     19      19    484.   141.    202.     168.
+5 Doerin…       1       3    87       15      15    260.    67.7    98.4    101.
+6 Idle e…       2       1    46       10      10    393.   136.    271.     140.
+# … with 18 more variables: Mean_boys_play_female &lt;dbl&gt;,
+#   SD_boys_play_female &lt;dbl&gt;, Mean_girls_play_female &lt;dbl&gt;,
+#   SD_girls_play_female &lt;dbl&gt;, `Neutral toys` &lt;dbl&gt;, Year &lt;dbl&gt;,
+#   `Parent present` &lt;dbl&gt;, Setting &lt;dbl&gt;, Country &lt;dbl&gt;,
+#   `Case definition adequate` &lt;chr&gt;, `Representativeness of cases` &lt;chr&gt;,
+#   `Selection of controls` &lt;chr&gt;, `Parental opinion` &lt;chr&gt;,
+#   `Comparability of both groups` &lt;chr&gt;, `Ascertainment of behaviour` &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+<p>In this study, we plan to use two different sets of variables, first is <code>Mean_boys_play_male</code> and <code>Mean_girls_play_female</code> where later one is control group, second is <code>Mean_boys_play_female</code> and <code>Mean_girls_play_male</code> where later one is control group.</p>
+<section id="first-setting" class="level3">
+<h3 class="anchored" data-anchor-id="first-setting">1. First Setting</h3>
+<p>To combine the effects, we have to get each effect size, however, effect sizes are not calculated but we have the necessary data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>m.raw <span class="ot">&lt;-</span> <span class="fu">metacont</span>(<span class="at">n.e =</span> N_boys,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">mean.e =</span> Mean_boys_play_male,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sd.e =</span> SD_boys_play_male,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">n.c =</span> N_girls,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">mean.c =</span> Mean_girls_play_female,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sd.c =</span> SD_girls_play_female,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> data,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">studlab =</span> <span class="fu">paste</span>(Study),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">fixed =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>m.raw</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of studies combined: k = 27
+Number of observations: o = 1610
+
+                          MD              95%-CI     z p-value
+Common effect model  -3.5717 [-10.7863;  3.6428] -0.97  0.3319
+Random effects model 14.3050 [-15.5035; 44.1136]  0.94  0.3469
+
+Quantifying heterogeneity:
+ tau^2 = 5085.6367 [3081.8461; 13848.4863]; tau = 71.3136 [55.5144; 117.6796]
+ I^2 = 78.7% [69.5%; 85.1%]; H = 2.16 [1.81; 2.59]
+
+Test of heterogeneity:
+      Q d.f.  p-value
+ 121.78   26 &lt; 0.0001
+
+Details on meta-analytical method:
+- Inverse variance method
+- Restricted maximum-likelihood estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau</code></pre>
+</div>
+</div>
+<p>With <code>meta</code> package this is very simple. We just put our results into the <code>forest()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>m.raw <span class="sc">%&gt;%</span> <span class="fu">forest</span>(<span class="at">sortvar=</span>TE)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="hw_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Most of them are in the centered around true effect, and their standard errors are quite small, some of them are in the right side of true effect and some are in the left. As for checking if methods/quality affect results, we use <code>metareg</code> to do that for us, where we model</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>m.raw <span class="sc">%&gt;%</span> <span class="fu">metareg</span>(<span class="st">`</span><span class="at">Parental opinion</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Representativeness of cases</span><span class="st">`</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Mixed-Effects Model (k = 27; tau^2 estimator: REML)
+
+tau^2 (estimated amount of residual heterogeneity):     4905.3662 (SE = 1731.3711)
+tau (square root of estimated tau^2 value):             70.0383
+I^2 (residual heterogeneity / unaccounted variability): 91.68%
+H^2 (unaccounted variability / sampling variability):   12.02
+R^2 (amount of heterogeneity accounted for):            3.54%
+
+Test for Residual Heterogeneity:
+QE(df = 24) = 115.1274, p-val &lt; .0001
+
+Test of Moderators (coefficients 2:3):
+QM(df = 2) = 4.3555, p-val = 0.1133
+
+Model Results:
+
+                                estimate       se     zval    pval      ci.lb 
+intrcpt                          50.2872  24.0145   2.0940  0.0363     3.2196 
+`Parental opinion`X             -63.2263  30.2979  -2.0868  0.0369  -122.6091 
+`Representativeness of cases`X  -11.1658  38.1802  -0.2925  0.7699   -85.9976 
+                                  ci.ub    
+intrcpt                         97.3548  * 
+`Parental opinion`X             -3.8436  * 
+`Representativeness of cases`X  63.6660    
+
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Here, we use <code>Parental opinion</code> and <code>Representativeness of cases</code>, finding that former one has effect on the results with 0.05 as significance level. Regarding authors’ genders,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>m.raw <span class="sc">%&gt;%</span> <span class="fu">metareg</span>(<span class="st">`</span><span class="at">Female authors</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Male authors</span><span class="st">`</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Mixed-Effects Model (k = 27; tau^2 estimator: REML)
+
+tau^2 (estimated amount of residual heterogeneity):     5046.4353 (SE = 1768.2411)
+tau (square root of estimated tau^2 value):             71.0383
+I^2 (residual heterogeneity / unaccounted variability): 92.35%
+H^2 (unaccounted variability / sampling variability):   13.08
+R^2 (amount of heterogeneity accounted for):            0.77%
+
+Test for Residual Heterogeneity:
+QE(df = 24) = 115.3810, p-val &lt; .0001
+
+Test of Moderators (coefficients 2:3):
+QM(df = 2) = 2.4950, p-val = 0.2872
+
+Model Results:
+
+                  estimate       se     zval    pval     ci.lb     ci.ub    
+intrcpt            70.3000  45.6474   1.5401  0.1235  -19.1672  159.7672    
+`Female authors`  -25.0774  16.4546  -1.5240  0.1275  -57.3278    7.1730    
+`Male authors`     12.3914  14.8996   0.8317  0.4056  -16.8113   41.5941    
+
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>We here find that authors’ genders do not affect results. Next, we use funnel plot to check for publication bias. Let’s make it a ‘contour-enhanced’ funnel plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>contour_levels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>contour_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"darkblue"</span>, <span class="st">"blue"</span>, <span class="st">"lightblue"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel</span>(m.raw, <span class="at">contour =</span> contour_levels, <span class="at">col.contour =</span> contour_colors)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="fu">c</span>(<span class="st">"p &lt; 0.10"</span>, <span class="st">"p &lt; 0.05"</span>, <span class="st">"p &lt; 0.01"</span>), <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">fill =</span> contour_colors)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="hw_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>From funnel plot, we see that most of them are around medium standard errors and scatter around zero difference, which is true effect, and this plot is more or less symmetric, which demonstrates that publication bias is not present regarding this setting.</p>
+</section>
+<section id="second-setting" class="level3">
+<h3 class="anchored" data-anchor-id="second-setting">2. Second Setting</h3>
+<p>To combine the effects, we have to get each effect size, however, effect sizes are not calculated but we have the necessary data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>m.raw2 <span class="ot">&lt;-</span> <span class="fu">metacont</span>(<span class="at">n.e =</span> N_boys,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">mean.e =</span> Mean_boys_play_female,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sd.e =</span> SD_boys_play_female,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">n.c =</span> N_girls,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">mean.c =</span> Mean_girls_play_male,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sd.c =</span> SD_girls_play_male,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> data,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">studlab =</span> <span class="fu">paste</span>(Study),</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">fixed =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>m.raw2</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of studies combined: k = 27
+Number of observations: o = 1610
+
+                          MD              95%-CI     z p-value
+Common effect model   0.2264 [ -3.7627;  4.2155]  0.11  0.9114
+Random effects model -4.2623 [-27.3012; 18.7765] -0.36  0.7169
+
+Quantifying heterogeneity:
+ tau^2 = 3181.2921 [1976.1324; 8347.9632]; tau = 56.4029 [44.4537; 91.3672]
+ I^2 = 82.4% [75.4%; 87.5%]; H = 2.39 [2.01; 2.83]
+
+Test of heterogeneity:
+      Q d.f.  p-value
+ 148.07   26 &lt; 0.0001
+
+Details on meta-analytical method:
+- Inverse variance method
+- Restricted maximum-likelihood estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau</code></pre>
+</div>
+</div>
+<p>With <code>meta</code> package this is very simple. We just put our results into the <code>forest()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>m.raw2 <span class="sc">%&gt;%</span> <span class="fu">forest</span>(<span class="at">sortvar=</span>TE)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="hw_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Most of them are in the centered around true effect, and their standard errors are quite small, some of them are in the right side of true effect and some are in the left, so we have the same conclusion as before. As for checking if methods/quality affect results, we use <code>metareg</code> to do that for us, where we model</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>m.raw2 <span class="sc">%&gt;%</span> <span class="fu">metareg</span>(<span class="st">`</span><span class="at">Parental opinion</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Representativeness of cases</span><span class="st">`</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Mixed-Effects Model (k = 27; tau^2 estimator: REML)
+
+tau^2 (estimated amount of residual heterogeneity):     3317.7195 (SE = 1111.2529)
+tau (square root of estimated tau^2 value):             57.5996
+I^2 (residual heterogeneity / unaccounted variability): 95.85%
+H^2 (unaccounted variability / sampling variability):   24.11
+R^2 (amount of heterogeneity accounted for):            0.00%
+
+Test for Residual Heterogeneity:
+QE(df = 24) = 137.1299, p-val &lt; .0001
+
+Test of Moderators (coefficients 2:3):
+QM(df = 2) = 2.3564, p-val = 0.3078
+
+Model Results:
+
+                                estimate       se     zval    pval     ci.lb 
+intrcpt                         -20.6769  18.7962  -1.1001  0.2713  -57.5166 
+`Parental opinion`X              34.9459  24.1159   1.4491  0.1473  -12.3205 
+`Representativeness of cases`X  -10.5581  30.6253  -0.3447  0.7303  -70.5826 
+                                  ci.ub    
+intrcpt                         16.1629    
+`Parental opinion`X             82.2123    
+`Representativeness of cases`X  49.4665    
+
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Here, we use <code>Parental opinion</code> and <code>Representativeness of cases</code>, unlike first setting, we here find <code>Parental opinion</code> is not significant. Regarding authors’ genders,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>m.raw2 <span class="sc">%&gt;%</span> <span class="fu">metareg</span>(<span class="st">`</span><span class="at">Female authors</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Male authors</span><span class="st">`</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Mixed-Effects Model (k = 27; tau^2 estimator: REML)
+
+tau^2 (estimated amount of residual heterogeneity):     3139.6456 (SE = 1056.3502)
+tau (square root of estimated tau^2 value):             56.0325
+I^2 (residual heterogeneity / unaccounted variability): 95.77%
+H^2 (unaccounted variability / sampling variability):   23.65
+R^2 (amount of heterogeneity accounted for):            1.31%
+
+Test for Residual Heterogeneity:
+QE(df = 24) = 133.1763, p-val &lt; .0001
+
+Test of Moderators (coefficients 2:3):
+QM(df = 2) = 2.8010, p-val = 0.2465
+
+Model Results:
+
+                  estimate       se     zval    pval      ci.lb    ci.ub    
+intrcpt           -60.6575  35.7662  -1.6959  0.0899  -130.7579   9.4429  . 
+`Female authors`   20.8783  12.9213   1.6158  0.1061    -4.4469  46.2035    
+`Male authors`     -0.6328  11.2472  -0.0563  0.9551   -22.6769  21.4113    
+
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>We here find that authors’ genders do not affect results similar to previous setting. Next, we use funnel plot to check for publication bias. Let’s make it a ‘contour-enhanced’ funnel plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>contour_levels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>contour_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"darkblue"</span>, <span class="st">"blue"</span>, <span class="st">"lightblue"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel</span>(m.raw2, <span class="at">contour =</span> contour_levels, <span class="at">col.contour =</span> contour_colors)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="fu">c</span>(<span class="st">"p &lt; 0.10"</span>, <span class="st">"p &lt; 0.05"</span>, <span class="st">"p &lt; 0.01"</span>), <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">fill =</span> contour_colors)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="hw_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>From funnel plot, we see that most of them are around medium standard errors and scatter around zero difference, which is true effect, and this plot is more or less symmetric, which demonstrates that publication bias is not present regarding this setting, which is similar as first setting.</p>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

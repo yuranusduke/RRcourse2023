@@ -58,8 +58,16 @@ In `12. Quarto and MD 3` folder, you can find a subfolder `hw` containing markdo
 
 - [x] Markdown 3 exercise
 
+### 7. Meta Analysis
 
-### 7. to be continued...
+Date: 2023/05/24
+
+In `13. Metaanalysis` folder, you can find `hw.qmd` which is metaanalysis exercise solution in `qmd` and corresponding rendered html `hw.html`.
+
+- [x] Meta analysis exercise
+
+
+### 8. to be continued...
 
 
 
